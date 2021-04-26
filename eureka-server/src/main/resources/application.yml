@@ -1,0 +1,39 @@
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: eureka-server
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+---
+#########  以下内容非参数传递下未被调用，默认使用以上的配置
+# peer0
+eureka:
+  instance:
+    hostname: peer0
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8771/eureka/
+spring:
+  config:
+    activate:
+      on-profile: peer0
+---
+# peer1
+server:
+  port: 8771
+eureka:
+  instance:
+    hostname: peer1
+  client:
+    serviceUrl:
+      defaultZone: http://peer0:8761/eureka/
+spring:
+  config:
+    activate:
+      on-profile: peer1
