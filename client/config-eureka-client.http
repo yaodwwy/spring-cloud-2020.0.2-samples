@@ -1,8 +1,0 @@
-GET http://localhost:8881
-
-###
-
-#重新读取配置文件
-POST http://localhost:8881/actuator/refresh
-
-###

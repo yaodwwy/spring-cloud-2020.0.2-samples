@@ -1,0 +1,13 @@
+
+## 可以多实例不同端口启动
+
+```http
+### -Dserver.port=8881
+
+GET http://localhost:8881
+
+### 重新读取配置文件
+
+POST http://localhost:8881/actuator/refresh
+
+###
