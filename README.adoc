@@ -64,7 +64,7 @@ image:.dev/help/pause.png[pause]
     启动 ConfigEurekaServer    访问 http://localhost:8889/config-eureka-client-dev.properties
     启动 ConfigEurekaClient    访问 http://localhost:8887/
 在读取配置文件不再写ip地址，而是服务名，这时如果配置服务部署多份，通过负载均衡高可用。
-![配置文件实例](config-instances.png)
+image:.dev/help/config-instances.png[配置文件实例]
     
 >第八篇: 消息总线(Spring Cloud Bus)
     

@@ -1,0 +1,46 @@
+version: '3.3'
+
+services:
+
+  gitlab:
+    container_name: gitlab
+    image: gitlab/gitlab-ce:latest
+    hostname: 'gitlab.example.com'
+    extra_hosts:
+      - "gitlab.example.com:127.0.0.1"
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://gitlab.example.com'
+        gitlab_rails['gitlab_shell_ssh_port'] = 8022
+    ports:
+      - "8080:80"
+      - "8443:443"
+      - "8022:22"
+    volumes:
+      - gitlab-config:/etc/gitlab
+      - gitlab-data:/var/opt/gitlab
+      - gitlab-logs:/var/log/gitlab
+
+  gitlab-page:
+    container_name: gitlab-page
+    image: gitlab/gitlab-ce:latest
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        gitlab_rails['gitlab_shell_ssh_port'] = 2224
+        external_url 'http://127.0.0.1:9090'
+        pages_external_url "http://127.0.0.1/"
+        gitlab_pages['enable'] = true
+        gitlab_pages['inplace_chroot'] = true
+    ports:
+      - "80:80"
+      - "9090:9090"
+      - "2224:22"
+    volumes:
+      - gitlab-config:/etc/gitlab
+      - gitlab-data:/var/opt/gitlab
+      - gitlab-logs:/var/log/gitlab
+
+volumes:
+  gitlab-config:
+  gitlab-data:
+  gitlab-logs:

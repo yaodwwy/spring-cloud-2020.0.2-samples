@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+
+  redis:
+    image: redis:5-alpine
+    container_name: redis
+    restart: always
+    # command: redis-server /usr/local/etc/redis/redis.conf 如果想自定义配置
+    command: redis-server --requirepass redis
+    volumes:
+        #- ./redis.conf:/usr/local/etc/redis/redis.conf 如果想自定义配置
+        - redis-data:/data
+    ports:
+      - "6379:6379"
+    environment:
+      TZ: "Asia/Shanghai"
+
+volumes:
+  redis-data:

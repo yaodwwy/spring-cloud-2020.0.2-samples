@@ -1,0 +1,21 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="ConfigServer3010" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="config-server" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.example.config.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.config.ConfigServerApplication" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+    <envs>
+      <env name="git.username" value="请输入" />
+      <env name="git.password" value="请输入" />
+    </envs>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

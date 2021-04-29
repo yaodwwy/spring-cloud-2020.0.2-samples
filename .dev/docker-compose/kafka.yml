@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+
+  kafka:
+    restart: always
+    container_name: kafka
+    image: wurstmeister/kafka
+    ports:
+      - "9092:9092"
+    environment:
+      TZ: "Asia/Shanghai"
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181/kafka
+      KAFKA_LISTENERS: PLAINTEXT://:9092
+#      KAFKA_SOCKET_REQUEST_MAX_BYTES: 2147483647
+# 这里需要根据实际情况，设置过大可能导致内存不足
+
+  kafka-manager:
+    depends_on:
+      - kafka
+    image: kafkamanager/kafka-manager:latest
+    restart: always
+    container_name: kafka-manager
+    hostname: kafka-manager
+    ports:
+      - 9000:9000
+    environment:
+      TZ: "Asia/Shanghai"
+      ZK_HOSTS: zookeeper:2181

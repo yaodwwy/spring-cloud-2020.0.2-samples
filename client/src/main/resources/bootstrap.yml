@@ -1,0 +1,25 @@
+server:
+  port: 3002
+spring:
+  application:
+    name: client
+  profiles:
+    active: dev
+  cloud:
+    config:
+      profile: product
+      label: master
+      uri: http://config-server:3010
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:3000/eureka/
+
+foo: "client-foo"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

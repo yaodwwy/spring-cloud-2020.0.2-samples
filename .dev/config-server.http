@@ -1,0 +1,19 @@
+###
+###
+### http://projects.spring.io/spring-cloud/spring-cloud.html#_spring_cloud_config
+###
+### /{application}/{profile}[/{label}]
+### /{application}-{profile}.yml
+### /{label}/{application}-{profile}.yml
+### /{application}-{profile}.properties
+### /{label}/{application}-{profile}.properties
+###
+
+
+GET http://localhost:3010/foo/dev
+
+###
+GET http://localhost:3010/application-test.json
+
+###  重新读取配置文件
+POST http://localhost:3002/actuator/refresh

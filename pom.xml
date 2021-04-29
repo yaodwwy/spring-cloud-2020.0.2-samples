@@ -18,8 +18,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>eureka-server</module>
-        <module>client</module>
+        <module>client-zk</module>
+        <module>config-server-zk</module>
     </modules>
 
     <properties>

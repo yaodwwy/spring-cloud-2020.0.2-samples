@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+
+  postgres12:
+    image: postgres:12
+    container_name: postgres12
+    hostname: postgres12
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-12-data:/var/lib/postgres/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+    command:
+      - postgres
+      - --shared_buffers=2GB
+      - --max_connections=300
+volumes:
+  postgres-12-data:

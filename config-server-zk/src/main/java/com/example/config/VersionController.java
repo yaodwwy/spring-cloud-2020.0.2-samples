@@ -1,15 +1,17 @@
-package com.example.clienta;
+package com.example.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RefreshScope
-@RestController
+@Controller
 public class VersionController {
 
     @Value("${server.port}")
@@ -18,6 +20,7 @@ public class VersionController {
     @Value("${foo}")
     String foo;
 
+    @ResponseBody
     @RequestMapping("/home")
     public String home(@RequestParam(required = false) String name) {
         return "hi " + (name != null ? name : "name 参数 未输入吧！") + ",i am from port:" + port;
@@ -29,6 +32,6 @@ public class VersionController {
         log.debug("debug foo: {}", foo);
         log.warn("warn foo: {}", foo);
         log.error("error foo: {}", foo);
-        return foo;
+        return "/foo/dev";
     }
 }

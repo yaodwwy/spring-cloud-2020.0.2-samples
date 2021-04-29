@@ -1,0 +1,18 @@
+version: '3.3'
+
+services:
+
+  jira:
+    image: "yaodwwy/jira"
+    container_name: jira
+    ports:
+      - "8080:8080"
+    volumes:
+      - jira-config:/var/atlassian/jira
+      - jira-app:/opt/atlassian/jira
+      - jira-log:/opt/atlassian/jira/logs
+
+volumes:
+  jira-config:
+  jira-app:
+  jira-log:

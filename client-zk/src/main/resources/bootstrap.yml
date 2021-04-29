@@ -1,0 +1,25 @@
+server:
+  port: 3001
+spring:
+  application:
+    name: client-zk
+  profiles:
+    active: dev
+  cloud:
+    zookeeper:
+      connect-string: host.docker.internal:2181
+      discovery:
+        instance-host: ${spring.application.name}
+    config:
+      profile: product
+      label: master
+      uri: http://config-server-zk:3020
+
+
+foo: "client-foo"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

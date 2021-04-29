@@ -1,22 +1,25 @@
 spring:
   application:
-    name: config-server
+    name: config-server-zk
   profiles:
     active: dev
   cloud:
+    zookeeper:
+      connect-string: host.docker.internal:2181
+      discovery:
+        instance-host: ${spring.application.name}
     config:
       server:
         git:
-          uri: https://github.com/adam/config.git
+          uri: https://devops-gitlab.gomro.cn/adam/config.git
           username: ${git.username}
           password: ${git.password}
           skipSslValidation: true
           searchPaths: /repo
       label: master
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:3000/eureka/
+
 ---
 server:
-  port: 3010
+  port: 3020
+
+foo: "config-server-zk foo"
