@@ -11,7 +11,7 @@ spring:
     config:
       server:
         git:
-          uri: https://devops-gitlab.gomro.cn/adam/config.git
+          uri: https://gitlab.com/adam/config.git
           username: ${git.username}
           password: ${git.password}
           skipSslValidation: true
